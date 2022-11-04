@@ -1,1 +1,1 @@
-This folder contains the pseudopotential suites. Each will be packed into one tarball.
+This folder contains the pseudopotential families. Each will be packed into one tarball.
