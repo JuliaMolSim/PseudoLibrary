@@ -14,10 +14,10 @@ for family in readdir("pseudos")
     artifacts[family] = Dict(
         "git-tree-sha1" => Tar.tree_hash(IOBuffer(inflate_gzip(outpath))),
         "lazy" => true,
-        "download" => Dict(
+        "download" => [Dict(
             "url" => "https://github.com/JuliaMolSim/PseudoLibrary/raw/main/artifacts/$(family).tar.gz",
             "sha256" => bytes2hex(open(sha256, outpath))
-        )
+        )]
     )
 end
 
