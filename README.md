@@ -1,11 +1,11 @@
-# Collected pseudopotential files for use as Julia artefacts
+# Collected pseudopotential files for use as Julia artifacts
 
 ## Using these files in your project / calculation
-If you want to use these artefacts in your calculation to automatically retrieve
+If you want to use these artifacts in your calculation to automatically retrieve
 the required pseudopotentials, follow these instructions. An example showing these
 pseudopotentials in action with a DFT calculation (using [DFTK.jl](https://dftk.org))
 is given in the [DFTK documentation](https://docs.dftk.org/stable/examples/pseudopotentials/).
-If you know how artefacts work in Julia skip to the next section.
+If you know how artifacts work in Julia skip to the next section.
 
 1. Make sure you are using a local project environment (or you are within a package environment).
    If you don't know what either of this is, see the Pkg.jl documentation on
