@@ -192,7 +192,7 @@ function make_gth_meta(functional, extra, version)
         "version"           => version,
         "program"           => "pseudo2.3",
         "extra"             => [extra, ],
-        "extension"         => "hgh",
+        "extension"         => "gth",
         "cp2k_data_handle"  => "potentials/Goedecker/cp2k/$hfunctional",
     )
 end

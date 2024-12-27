@@ -1,10 +1,10 @@
 functional = "pbe"
 collection = "cp2k"
 program = "pseudo2.3"
-extension = "hgh"
-extra = ["largecore"]
+extension = "gth"
+extra = ["semicore"]
 cp2k_data_handle = "potentials/Goedecker/cp2k/pbe"
-extracted_on = "2024-12-27T21:18:25.762"
+extracted_on = "2024-12-27T22:17:47.276"
 version = "0.1"
 type = "nc"
 relativistic = "sr"

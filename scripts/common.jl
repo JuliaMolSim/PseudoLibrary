@@ -1,5 +1,5 @@
 KNOWN_FUNCTIONALS = ["pbe", "lda", "pbesol"]
-KNOWN_EXTENSIONS  = ["xml", "upf", "hgh", "psp8"]
+KNOWN_EXTENSIONS  = ["xml", "upf", "gth", "psp8"]
 
 function check_valid_meta(meta::AbstractDict, folder="")
     needed_keys = ("collection", "type", "relativistic", "functional",
