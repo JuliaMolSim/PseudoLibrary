@@ -1,0 +1,10 @@
+functional = "pbesol"
+collection = "dojo"
+program = "oncvpsp3"
+extension = "upf"
+extra = ["stringent"]
+pseudodojo_handle = "nc-fr-04_pbesol_stringent_upf"
+extracted_on = "2024-12-27T19:51:20.752"
+version = "0.4"
+type = "nc"
+relativistic = "fr"

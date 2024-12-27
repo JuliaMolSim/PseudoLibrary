@@ -1,0 +1,10 @@
+functional = "lda"
+collection = "dojo"
+program = "jth"
+extension = "xml"
+extra = ["standard"]
+pseudodojo_handle = "paw-sr-11_lda_standard_xml"
+extracted_on = "2024-12-27T20:03:22"
+version = "1.1"
+type = "paw"
+relativistic = "sr"

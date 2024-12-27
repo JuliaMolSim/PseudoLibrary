@@ -1,0 +1,15 @@
+rcut = 10.0
+Ecut = 42
+supersampling = 2.0
+
+[cutoffs_normal]
+Ecut = 42
+supersampling = 2.0
+
+[cutoffs_high]
+Ecut = 48
+supersampling = 2.0
+
+[cutoffs_low]
+Ecut = 36
+supersampling = 2.0

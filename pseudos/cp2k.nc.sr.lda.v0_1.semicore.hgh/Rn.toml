@@ -1,0 +1,4 @@
+cp2k_filename = "Rn-q8"
+Ecut = -1
+supersampling = 2.0
+n_valence_electrons = 8

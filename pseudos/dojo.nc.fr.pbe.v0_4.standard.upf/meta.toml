@@ -1,0 +1,10 @@
+functional = "pbe"
+collection = "dojo"
+program = "oncvpsp3"
+extension = "upf"
+extra = ["standard"]
+pseudodojo_handle = "nc-fr-04_pbe_standard_upf"
+extracted_on = "2024-12-27T19:49:29.219"
+version = "0.4"
+type = "nc"
+relativistic = "fr"

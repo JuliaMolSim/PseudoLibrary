@@ -1,0 +1,10 @@
+functional = "lda"
+collection = "dojo"
+program = "oncvpsp3"
+extension = "upf"
+extra = ["standard"]
+pseudodojo_handle = "nc-sr-04_pw_standard_upf"
+extracted_on = "2024-12-27T19:51:43.744"
+version = "0.4.1"
+type = "nc"
+relativistic = "sr"

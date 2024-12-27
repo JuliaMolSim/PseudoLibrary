@@ -1,0 +1,10 @@
+functional = "pbe"
+collection = "cp2k"
+program = "pseudo2.3"
+extension = "hgh"
+extra = ["largecore"]
+cp2k_data_handle = "potentials/Goedecker/cp2k/pbe"
+extracted_on = "2024-12-27T21:18:25.762"
+version = "0.1"
+type = "nc"
+relativistic = "sr"

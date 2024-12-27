@@ -1,0 +1,52 @@
+name: Artifact
+
+on:
+  push:
+    branches:
+      - master
+    tags: ['v*']
+  pull_request:
+
+permissions:
+  contents: write
+
+concurrency:
+  # Skip intermediate builds: always.
+  # Cancel intermediate builds: only if it is a pull request build.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+
+jobs:
+  artifact:
+    name: Artifact build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Julia stable
+        uses: julia-actions/setup-julia@v1
+        with:
+          version: '1'
+          arch: x64
+      - uses: julia-actions/cache@v2
+      - uses: julia-actions/julia-buildpkg@v1
+        with:
+          project: "scripts"
+      - run: julia --color=yes --project=scripts scripts/make_artifacts.jl pseudos output
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Artifacts
+          path: |
+            output/*.tar.gz
+            output/Artifacts.toml
+          retention-days: 1
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+      - name: Upload Release Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            output/*.tar.gz
+            output/Artifacts.toml
+        if: startsWith(github.ref, 'refs/tags/')

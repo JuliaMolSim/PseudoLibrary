@@ -1,0 +1,10 @@
+functional = "lda"
+collection = "cp2k"
+program = "pseudo2.3"
+extension = "hgh"
+extra = ["semicore"]
+cp2k_data_handle = "potentials/Goedecker/cp2k/pade"
+extracted_on = "2024-12-27T21:18:24.205"
+version = "0.1"
+type = "nc"
+relativistic = "sr"
