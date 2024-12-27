@@ -25,7 +25,7 @@ such as `sr` (scalar relativistic) or `fr` (full relativistic). Next comes the X
 for which the pseudo was constructed (e.g. `pbe`, `lda`, `pbesol`), potentially followed
 a version indication, the generating code and some details on the promised accuracy
 (stringent, standard, loose).
-The name closes in the file format in which the pseudos are stored (e.g. `upf`, `hgh`, `psp8`),
+The name closes in the file format in which the pseudos are stored (e.g. `upf`, `gth`, `psp8`),
 which is also the extension used for all file names.
 
 The list of available pseudo families
