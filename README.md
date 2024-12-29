@@ -46,6 +46,12 @@ https://doi.org/10.1016/j.cpc.2018.01.012.
 julia --project=scripts scripts/add_pseudodojo.jl pseudos
 ```
 
+**Collection-specific metadata.** Contains the following element-specific metadata:
+* `cutoffs_normal`, `cutoffs_high`, `cutoffs_low`: Respective recommended cutoffs by PseudoDojo
+* `rcut`: Recommended radial cutoff when integrating numeric pseudopotentials (in Bohrs).
+   Right now just `10.0` for each element (the QuantumEspresso hard-coded value).
+   This may be refined in future versions of the library.
+
 ### [CP2K GTH-type potentials](https://github.com/cp2k/cp2k-data/tree/master/potentials/Goedecker) (prefixed cp2k)
 
 ```
@@ -78,6 +84,10 @@ is available in
 and
 [pseudos/cp2k.nc.sr.pbe.v0_1.md](pseudos/cp2k.nc.sr.pbe.v0_1.md).
 
+**Collection-specific metadata.** Contains the following element-specific metadata:
+* `n_valence_electrons`: Number of valence electrons
+* `cp2k_filename`: The original file name used in the CP2K pseudopotential data repository.
+
 ## Structure of the Artifact.toml
 Next to the usual entries to make the `Artifact.toml` useful to download
 peudopotential information as a lazy artifact (using `LazyArtifacts`)
@@ -109,7 +119,9 @@ family in form of a dictionary with the following keys:
   * `program`: Code used to generate the pseudopotentials
   * `extra`: List of some extra identifiers (e.g. `semicore` or `standard`)
 - For each element you can add an `element.toml` file with additional metadata
-  about this pseudopotential. Common expected fields include:
+  about this pseudopotential. Collection-specific fields are explained
+  above in the *Available pseudopotentials* section. Common fields
+  available for most pseudopotential collections include:
   * `Ecut`: A recommended kinetic energy cutoff value for the wavefunction
     to be employed with this pseudopotential.
     Note, that some libraries set this to `-1` to indicate *unknown*.
@@ -120,9 +132,6 @@ family in form of a dictionary with the following keys:
     `Ecut_density = supersampling * supersampling * Ecut`, i.e. the square
     of the supersampling factor times the `Ecut` value above gives the
     density cutoff.
-  * `n_valence_electrons`: Number of valence electrons
-  * `rcut`: Recommended radial cutoff when integrating numeric pseudopotentials
-    (in Bohrs)
 
 Note, that for most already existing
 pseudopotential collections scripts have been employed to simplify the addition
