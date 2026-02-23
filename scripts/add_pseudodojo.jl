@@ -59,10 +59,9 @@ function pseudodojo_djson_to_toml(meta, djson, toml)
         @warn "Could not find Ecut hints for: $element"
     end
 
-    #
-    # rcut values (use what QuantumEspresso is doing)
-    #
-    outmeta["rcut"] = 10.0  # Bohrs
+    # rcut values: We use what ABINIT is doing, because the PseudoDojo potentials
+    # have been developed and verified using ABINIT, where 5.99 is hard-coded
+    outmeta["rcut"] = 5.99  # Bohrs
 
     # Dump file
     open(io -> TOML.print(io, outmeta), toml, "w")

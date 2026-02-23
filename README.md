@@ -49,7 +49,8 @@ julia --project=scripts scripts/add_pseudodojo.jl pseudos
 **Collection-specific metadata.** Contains the following element-specific metadata:
 * `cutoffs_normal`, `cutoffs_high`, `cutoffs_low`: Respective recommended cutoffs by PseudoDojo
 * `rcut`: Recommended radial cutoff when integrating numeric pseudopotentials (in Bohrs).
-   Right now just `10.0` for each element (the QuantumEspresso hard-coded value).
+   Right now just `5.99` for each element (equal the ABINIT hard-coded value,
+   with respect to which PseudoDojo is developed and tested).
    This may be refined in future versions of the library.
 
 ### [CP2K GTH-type potentials](https://github.com/cp2k/cp2k-data/tree/master/potentials/Goedecker) (prefixed cp2k)

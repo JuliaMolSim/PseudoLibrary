@@ -1,4 +1,4 @@
-rcut = 10.0
+rcut = 5.99
 Ecut = 59
 supersampling = 2.0
 
