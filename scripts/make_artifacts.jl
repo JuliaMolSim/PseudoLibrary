@@ -1,32 +1,11 @@
 using Inflate
 using LibGit2
-using PeriodicTable
 using SHA
 using Tar
-using TOML
 include("common.jl")
 
 LIBRARY_VERSION = "0.2.0"
 REPO = "JuliaMolSim/PseudoLibrary"
-
-function collect_meta(folder)
-    meta = open(TOML.parse, joinpath(folder, "meta.toml"), "r")
-    elements = String[]
-
-    for element in getproperty.(PeriodicTable.elements, :symbol)
-        if isfile(joinpath(folder, element * "." * meta["extension"]))
-            push!(elements, element)
-        end
-    end
-    meta["elements"] = elements
-
-    check_valid_meta(meta, folder)
-    meta
-end
-
-function pseudo_folders(path)
-    [root for (root, dirs, files) in walkdir(path) if "meta.toml" in files]
-end
 
 function determine_version()
     if startswith(get(ENV, "GITHUB_REF", ""), "refs/tags/")
@@ -45,10 +24,10 @@ function main(pseudopath, output)
     version = determine_version()
     @info "Determined pseudolibrary release: $version"
 
+    @assert isdir(pseudopath)
     folders = pseudo_folders(pseudopath)
     @info "Found pseudo folders:" folders
 
-    @assert isdir(pseudopath)
     @assert !isdir(output)
     mkpath(output)
 

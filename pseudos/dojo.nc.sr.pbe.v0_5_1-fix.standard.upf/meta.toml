@@ -5,6 +5,6 @@ extension = "upf"
 extra = ["standard"]
 pseudodojo_handle = "nc-sr-05_pbe_standard_upf"
 extracted_on = "2026-02-23T20:08:25.000"
-version = "0.5.fix"
+version = "0.5.1-fix"
 type = "nc"
 relativistic = "sr"

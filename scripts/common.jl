@@ -1,5 +1,27 @@
+using PeriodicTable
+using TOML
+
 KNOWN_FUNCTIONALS = ["pbe", "lda", "pbesol"]
 KNOWN_EXTENSIONS  = ["xml", "upf", "gth", "psp8"]
+
+function pseudo_folders(path)
+    [root for (root, dirs, files) in walkdir(path) if "meta.toml" in files]
+end
+
+function collect_meta(folder)
+    meta = open(TOML.parse, joinpath(folder, "meta.toml"), "r")
+    elements = String[]
+
+    for element in getproperty.(PeriodicTable.elements, :symbol)
+        if isfile(joinpath(folder, element * "." * meta["extension"]))
+            push!(elements, element)
+        end
+    end
+    meta["elements"] = elements
+
+    check_valid_meta(meta, folder)
+    meta
+end
 
 function check_valid_meta(meta::AbstractDict, folder="")
     needed_keys = ("collection", "type", "relativistic", "functional",
@@ -21,6 +43,12 @@ function check_valid_meta(meta::AbstractDict, folder="")
     end
     if !(meta["extension"] in KNOWN_EXTENSIONS)
         error("Unusual extension: $(meta["extension"]) (in $folder)")
+    end
+
+    try
+        VersionNumber(meta["version"])
+    catch
+        error("Invalid version string: $(meta["version"]) (in $folder)")
     end
 end
 
