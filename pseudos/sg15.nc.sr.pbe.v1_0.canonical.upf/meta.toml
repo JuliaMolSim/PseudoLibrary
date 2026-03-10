@@ -1,0 +1,10 @@
+functional = "pbe"
+collection = "sg15"
+program = "oncvpsp2"
+extension = "upf"
+extra = ["canonical"]
+sg_suffix = "ONCV_PBE-1.0"
+extracted_on = "2026-03-10T08:37:30.035"
+version = "1.0"
+type = "nc"
+relativistic = "sr"
