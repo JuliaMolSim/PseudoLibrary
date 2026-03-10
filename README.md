@@ -32,6 +32,11 @@ The list of available pseudo families
 with links to further resources and the appropriate references:
 
 ### [PseudoDojo](http://www.pseudo-dojo.org) (prefixed dojo)
+
+Norm-conserving pseudopotentials for multiple functionals and accuracy levels.
+Some potentials are available for relativistic calculations.
+Ecut recommendations are taken from the pseudo-dojo protocol.
+
 ```
 M.J. van Setten, M. Giantomassi, E. Bousquet, M.J. Verstraete, D.R. Hamann, X. Gonze, G.-M. Rignanese,
 The PseudoDojo: Training and grading a 85 element optimized norm-conserving pseudopotential table,
@@ -49,11 +54,51 @@ julia --project=scripts scripts/add_pseudodojo.jl pseudos
 **Collection-specific metadata.** Contains the following element-specific metadata:
 * `cutoffs_normal`, `cutoffs_high`, `cutoffs_low`: Respective recommended cutoffs by PseudoDojo
 * `rcut`: Recommended radial cutoff when integrating numeric pseudopotentials (in Bohrs).
-   Right now just `5.99` for each element (equal the ABINIT hard-coded value,
-   with respect to which PseudoDojo is developed and tested).
-   This may be refined in future versions of the library.
+   Equal to `5.99` for each element (the ABINIT hard-coded value, with respect
+   to which PseudoDojo is developed and tested). This may be refined in future
+   versions of the library.
+
+### [SG15 ONCV potentials](http://www.quantum-simulation.org/potentials/sg15_oncv/index.htm) (prefixed sg15)
+
+Systematically obtained norm-conserving pseudopotentials for PBE.
+Some potentials are available for relativistic calculations.
+
+```
+M. Schlipf, F. Gygi,
+Optimization algorithm for the generation of ONCV pseudopotentials,
+Computer Physics Communications,
+Volume 196,
+2015,
+https://doi.org/10.1016/j.cpc.2015.05.011.
+```
+
+```
+P. Scherpelz, M. Govoni, I. Hamada, G. Galli,
+Implementation and Validation of Fully Relativistic GW Calculations: Spin-Orbit Coupling in Molecules, Nanocrystals, and Solids,
+Journal of Chemical Theory and Computation,
+Volume 12,
+2016,
+https://doi.org/10.1021/acs.jctc.6b00114
+```
+
+**Script.** The sg15 pseudopotentials have been added by running the script
+```sh
+julia --project=scripts scripts/add_sg15.jl pseudos
+```
+The script downloads the latest tarball (sg15_oncv_upf_2020-02-06.tar.gz) and splits
+the files into the versions 1.0, 1.1 and 1.2 of the family.
+
+**Collection-specific metadata.** Contains the following element-specific metadata:
+* `sg15_filename`: Original filename of this pseudopotential file in the SG15 tarball.
+* `rcut`: Recommended radial cutoff when integrating numeric pseudopotentials (in Bohrs).
+   Equal to `10` for each element (the QuantumESPRESSO hard-coded value, with
+   respect to which SG15 potentials have been developed and tested). This may
+   be refined in future versions of the library.
+
 
 ### [CP2K GTH-type potentials](https://github.com/cp2k/cp2k-data/tree/master/potentials/Goedecker) (prefixed cp2k)
+
+Analytic norm-conserving pseudopotentials.
 
 ```
 C. Hartwigsen, S. Goedecker, J. Hutter,
