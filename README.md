@@ -58,6 +58,14 @@ julia --project=scripts scripts/add_pseudodojo.jl pseudos
    to which PseudoDojo is developed and tested). This may be refined in future
    versions of the library.
 
+**Deviations from upstream.** The pseudopotential files identified by
+`dojo.nc.sr.pbe.v0_5.standard.upf` of the elements Bi, Pb, Po, Rn, Te, Tl are corrupted due
+to a bug in ONCVPSP, which could not be easily fixed on the pseudodojo website itself.
+We therefore fixed this bug locally in this library and make the correct files available as
+`dojo.nc.sr.pbe.v0_5_1-fix.standard.upf`. Apart from the bugfix, this family is identical to
+`dojo.nc.sr.pbe.v0_5.standard.upf`; we recommend you use
+`dojo.nc.sr.pbe.v0_5_1-fix.standard.upf` in your calculations.
+
 ### [SG15 ONCV potentials](http://www.quantum-simulation.org/potentials/sg15_oncv/index.htm) (prefixed sg15)
 
 Systematically obtained norm-conserving pseudopotentials for PBE.
