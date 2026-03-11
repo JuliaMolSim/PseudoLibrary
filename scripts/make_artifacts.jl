@@ -4,7 +4,7 @@ using SHA
 using Tar
 include("common.jl")
 
-LIBRARY_VERSION = "0.2.0"
+LIBRARY_VERSION = "0.2.1"
 REPO = "JuliaMolSim/PseudoLibrary"
 
 function determine_version()
