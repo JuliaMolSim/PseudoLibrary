@@ -1,0 +1,9 @@
+functional = "pbe"
+relativistic = "sr"
+program = "oncvpsp4"
+collection = "spms"
+extra = ["canonical"]
+extracted_on = "2026-04-16T12:30:44.768"
+version = "1.0"
+extension = "upf"
+type = "nc"
