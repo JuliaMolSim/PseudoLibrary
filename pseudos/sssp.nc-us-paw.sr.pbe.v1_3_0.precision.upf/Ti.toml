@@ -1,0 +1,5 @@
+Ecut = 20.0
+supersampling = 2.8284271247461903
+md5 = "88a00a6731bd790ddea75d31a80cb452"
+source_family = "GBRV-1.4"
+source_filename = "ti_pbe_v1.4.uspp.F.UPF"

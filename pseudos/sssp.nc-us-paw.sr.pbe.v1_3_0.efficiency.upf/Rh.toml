@@ -1,0 +1,5 @@
+Ecut = 17.5
+supersampling = 2.0
+md5 = "ba07c69523b14cacd10683cd4c4284c1"
+source_family = "SG15"
+source_filename = "Rh_ONCV_PBE-1.0.oncvpsp.upf"

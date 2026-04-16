@@ -1,0 +1,5 @@
+Ecut = 22.5
+supersampling = 2.8284271247461903
+md5 = "de937c0c8ae4b350e69c02b76d8a83cb"
+source_family = "GBRV-1.4"
+source_filename = "ni_pbesol_v1.4.uspp.F.UPF"

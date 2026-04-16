@@ -1,0 +1,5 @@
+Ecut = 30.0
+supersampling = 2.0
+md5 = "ed053c2ceb368a0b775438b7c863d821"
+source_family = "SG15-1.1"
+source_filename = "Xe_ONCV_PBEsol-1.1.upf"

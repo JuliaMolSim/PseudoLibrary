@@ -1,0 +1,5 @@
+Ecut = 60.0
+supersampling = 2.8284271247461903
+md5 = "5c61dddfb132b66dc3f68191c02785a8"
+source_family = "100PAW"
+source_filename = "Rn.pbesol-dn-kjpaw_psl.1.0.0.UPF"

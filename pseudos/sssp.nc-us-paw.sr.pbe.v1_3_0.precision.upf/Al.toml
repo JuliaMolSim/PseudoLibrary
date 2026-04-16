@@ -1,0 +1,5 @@
+Ecut = 15.0
+supersampling = 2.8284271247461903
+md5 = "cfc449ca30b5f3223ec38ddd88ac046d"
+source_family = "100PAW"
+source_filename = "Al.pbe-n-kjpaw_psl.1.0.0.UPF"

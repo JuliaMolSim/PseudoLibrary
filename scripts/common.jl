@@ -32,8 +32,14 @@ function check_valid_meta(meta::AbstractDict, folder="")
         end
     end
 
-    if !(meta["type"] in ("nc", "paw", "us"))
-        error("Invalid type: $(meta["type"]) (in $folder)")
+    if typeof(meta["type"]) <: AbstractVector
+        if !all(t -> t in ("nc", "paw", "us"), meta["type"])
+            error("Invalid type: $(meta["type"]) (in $folder)")
+        end
+    else
+        if !(meta["type"] in ("nc", "paw", "us"))
+            error("Invalid type: $(meta["type"]) (in $folder)")
+        end
     end
     if !(meta["relativistic"] in ("sr", "fr"))
         error("Invalid relativistic: $(meta["relativistic"]) (in $folder)")
@@ -53,7 +59,8 @@ function check_valid_meta(meta::AbstractDict, folder="")
 end
 
 function artifact_name(meta::AbstractDict)
-    join((meta["collection"], meta["type"], meta["relativistic"],
+    type = typeof(meta["type"]) <: AbstractString ? meta["type"] : join(meta["type"], "-")
+    join((meta["collection"], type, meta["relativistic"],
           meta["functional"], "v" * replace(meta["version"], "." => "_"),
           join(meta["extra"], "."), meta["extension"]), ".")
 end

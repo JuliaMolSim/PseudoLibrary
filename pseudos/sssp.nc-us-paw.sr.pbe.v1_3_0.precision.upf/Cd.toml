@@ -1,0 +1,5 @@
+Ecut = 50.0
+supersampling = 2.8284271247461903
+md5 = "1f58be37c2dbf75aec6b05b1d77ccc80"
+source_family = "100PAW"
+source_filename = "Cd.paw.z_20.ld1.psl.v1.0.0-high.upf"
