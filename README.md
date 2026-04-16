@@ -133,7 +133,7 @@ julia --project=scripts scripts/add_cp2k.jl pseudos
 In running the script we categorised the pseudopotential files
 into *smallcore*, *semicore* and *largecore*. The mapping from the original filenames
 [used upstream](https://github.com/cp2k/cp2k-data/tree/master/potentials/Goedecker/cp2k)
-is available in 
+is available in
 [pseudos/cp2k.nc.sr.lda.v0_1.md](pseudos/cp2k.nc.sr.lda.v0_1.md)
 and
 [pseudos/cp2k.nc.sr.pbe.v0_1.md](pseudos/cp2k.nc.sr.pbe.v0_1.md).
@@ -141,6 +141,30 @@ and
 **Collection-specific metadata.** Contains the following element-specific metadata:
 * `n_valence_electrons`: Number of valence electrons
 * `cp2k_filename`: The original file name used in the CP2K pseudopotential data repository.
+
+### [SSSP pseudopotentials](https://materialscloud.org/discover/sssp) (prefixed sssp)
+
+A mix of norm-conserving, ultrasoft, and PAW pseudopotentials.
+
+```
+G. Prandini, A. Marrazzo, I. E. Castelli, N. Mounet, N. Marzari,
+Precision and efficiency in solid-state pseudopotential calculations,
+npj Computational Materials,
+Volume 4,
+2018,
+https://doi.org/10.1038/s41524-018-0127-2
+```
+
+**Script.** The SSSP pseudopotentials have been added by running the script
+```sh
+julia --project=scripts scripts/add_sssp.jl pseudos
+```
+
+**Collection-specific metadata.** Contains the following element-specific metadata:
+* `md5`: The md5 hash of the pseudopotential file.
+* `source_family`: Original collection from which the pseudopotential was taken.
+* `source_filename`: Original filename in the source family.
+
 
 ## Structure of the Artifact.toml
 Next to the usual entries to make the `Artifact.toml` useful to download
