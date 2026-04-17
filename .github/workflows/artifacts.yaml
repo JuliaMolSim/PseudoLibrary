@@ -33,6 +33,7 @@ jobs:
       - uses: julia-actions/julia-buildpkg@v1
         with:
           project: "scripts"
+      - run: git config --global user.name "PseudoLibrary"
       - run: julia --color=yes --project=scripts scripts/make_artifacts.jl pseudos output
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
