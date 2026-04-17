@@ -1,4 +1,0 @@
-rcut = 10.0
-Ecut = -1
-supersampling = 2.0
-sg15_filename = "C_ONCV_PBE-1.2.upf"

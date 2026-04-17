@@ -2,10 +2,12 @@ using Inflate
 using LibGit2
 using SHA
 using Tar
+using Pkg
 include("common.jl")
 
 LIBRARY_VERSION = "0.2.1"
 REPO = "JuliaMolSim/PseudoLibrary"
+PROJ = Pkg.project()
 
 function determine_version()
     if startswith(get(ENV, "GITHUB_REF", ""), "refs/tags/")
@@ -24,7 +26,16 @@ function main(pseudopath, output)
     version = determine_version()
     @info "Determined pseudolibrary release: $version"
 
-    @assert isdir(pseudopath)
+    @assert !isdir(pseudopath)
+    mkdir(pseudopath)
+    for fn in readdir(@__DIR__)
+        if startswith(fn, "add_") && endswith(fn, ".jl")
+            script = joinpath(@__DIR__, fn)
+            @info "Running $script"
+            run(`julia --project=$(PROJ.path) $script $pseudopath`)
+        end
+    end
+
     folders = pseudo_folders(pseudopath)
     @info "Found pseudo folders:" folders
 
