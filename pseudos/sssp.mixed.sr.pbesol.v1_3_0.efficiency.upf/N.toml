@@ -1,0 +1,5 @@
+sssp_pseudopotential = "THEOS"
+Ecut = 30.0
+supersampling = 2.8284271247461903
+sssp_filename = "N.pbesol-theos.UPF"
+sssp_md5 = "1b64827339d390a5a22afef3ff345c9d"

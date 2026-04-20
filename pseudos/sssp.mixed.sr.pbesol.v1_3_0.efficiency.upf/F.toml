@@ -1,0 +1,5 @@
+sssp_pseudopotential = "GBRV-1.4"
+Ecut = 22.5
+supersampling = 2.8284271247461903
+sssp_filename = "f_pbesol_v1.4.uspp.F.UPF"
+sssp_md5 = "d2815ecb49b17b99c5724ffd2f9bbd8d"

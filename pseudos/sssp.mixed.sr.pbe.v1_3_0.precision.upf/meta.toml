@@ -1,0 +1,10 @@
+functional = "pbe"
+collection = "sssp"
+program = "mixed"
+extension = "upf"
+extra = ["precision"]
+sssp_handle = "pbe_precision_1-3-0"
+extracted_on = "2026-04-20T14:17:33.201"
+version = "1.3.0"
+type = "mixed"
+relativistic = "sr"

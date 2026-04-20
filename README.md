@@ -161,9 +161,9 @@ julia --project=scripts scripts/add_sssp.jl pseudos
 ```
 
 **Collection-specific metadata.** Contains the following element-specific metadata:
-* `md5`: The md5 hash of the pseudopotential file.
-* `source_family`: Original collection from which the pseudopotential was taken.
-* `source_filename`: Original filename in the source family.
+* `sssp_md5`: The md5 hash of the pseudopotential file.
+* `sssp_pseudopotential`: Original collection from which the pseudopotential was taken.
+* `sssp_filename`: Original filename in the source family and consequently the SSSP.
 
 
 ## Structure of the Artifact.toml

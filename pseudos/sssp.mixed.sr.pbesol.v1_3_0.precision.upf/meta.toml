@@ -1,0 +1,10 @@
+functional = "pbesol"
+collection = "sssp"
+program = "mixed"
+extension = "upf"
+extra = ["precision"]
+sssp_handle = "pbesol_precision_1-3-0"
+extracted_on = "2026-04-20T14:17:42.295"
+version = "1.3.0"
+type = "mixed"
+relativistic = "sr"

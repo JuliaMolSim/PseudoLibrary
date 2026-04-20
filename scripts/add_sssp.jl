@@ -7,6 +7,9 @@ using YAML
 using Dates
 include("common.jl")
 
+FIRST_RECORD_ID = "e67tc-6b197"
+FUNCTIONAL_MAP = Dict("pbe" => "PBE", "pbesol" => "PBEsol")
+
 function get_extract_tarball(url)
     # Download and extract tarball file in current working directory
     withenv("JULIA_SSL_NO_VERIFY_HOSTS" => "*.materialscloud.org") do
@@ -22,16 +25,15 @@ function download_sssp(meta::AbstractDict, pseudopath)
     check_valid_meta(meta, pseudofolder)
 
     # Get the id of the latest record version
-    record_id_first = "e67tc-6b197"
-    url_latest_record = "https://archive.materialscloud.org/api/records/$record_id_first/versions/latest"
+    url_latest_record = "https://archive.materialscloud.org/api/records/$FIRST_RECORD_ID/versions/latest"
     response = HTTP.request("GET", url_latest_record)
-    record_id_latest = JSON3.read(response.body)[:id]
-    @info "Latest record id: $record_id_latest"
+    latest_record_id = JSON3.read(response.body)[:id]
+    @info "Latest record id: $latest_record_id"
 
-    functional_name = Dict("pbe" => "PBE", "pbesol" => "PBEsol")[meta["functional"]]
+    functional_name = FUNCTIONAL_MAP[meta["functional"]]
     filename_base = "SSSP_$(meta["version"])_$(functional_name)_$(meta["extra"][1])"
-    url_archive = "https://archive.materialscloud.org/api/records/$record_id_latest/files/$filename_base.tar.gz/content"
-    url_metadata = "https://archive.materialscloud.org/api/records/$record_id_latest/files/$filename_base.json/content"
+    url_archive = "https://archive.materialscloud.org/api/records/$latest_record_id/files/$filename_base.tar.gz/content"
+    url_metadata = "https://archive.materialscloud.org/api/records/$latest_record_id/files/$filename_base.json/content"
 
     outputfolder = joinpath(pseudopath, artifact_name(meta))
     mkdir(outputfolder)
@@ -48,27 +50,22 @@ function download_sssp(meta::AbstractDict, pseudopath)
         metadata = open(JSON3.read, metadata_path, "r")
 
         for fn in readdir(d; join=true)
+            bn = basename(fn)
             if endswith(fn, ".UPF") || endswith(fn, ".upf")
-                # Filenames are (element)[._-](...) with no consistent capitalization
-                element = (
-                    fn |> basename |>
-                    (x -> split(x, "-")) |> first |>
-                    (x -> split(x, "_")) |> first |>
-                    (x -> split(x, ".")) |> first |>
-                    titlecase
-                )
-                cp(fn, joinpath(outputfolder, element * "." * meta["extension"]))
-                open(joinpath(outputfolder, element * ".toml"), "w") do io
-                    Ecut_wfc_Ry = metadata[Symbol(element)][:cutoff_wfc]
-                    Ecut_rho_Ry = metadata[Symbol(element)][:cutoff_rho]
+                element = findfirst(v -> v[:filename] == bn, metadata)
+                cp(fn, joinpath(outputfolder, String(element) * "." * meta["extension"]))
+                open(joinpath(outputfolder, String(element) * ".toml"), "w") do io
+                    Ecut_wfc_Ry = metadata[element][:cutoff_wfc]
+                    Ecut_rho_Ry = metadata[element][:cutoff_rho]
                     TOML.print(
                         io,
                         Dict(
                             "Ecut" => Ecut_wfc_Ry / 2,  # Convert from Ry to Ha
                             "supersampling" => sqrt(Ecut_rho_Ry / Ecut_wfc_Ry),
-                            "source_family" => metadata[Symbol(element)][:pseudopotential],
-                            "source_filename" => metadata[Symbol(element)][:filename],
-                            "md5" => metadata[Symbol(element)][:md5],
+                            # TODO: eventually add "source_family", etc. as API-level metadata keys
+                            "sssp_pseudopotential" => metadata[element][:pseudopotential],  # original pseudo family
+                            "sssp_filename" => metadata[element][:filename],  # original file name
+                            "sssp_md5" => metadata[element][:md5],  # md5 hash of the file
                         )
                     )
                 end
@@ -86,11 +83,11 @@ end
 function make_sssp_meta(version, functional, protocol)
     Dict(
         "collection" => "sssp",
-        "type" => ["nc", "us", "paw"],
+        "type" => "mixed",
         "relativistic" => "sr",
         "functional" => functional,
         "version" => version,
-        "program" => "many",
+        "program" => "mixed",
         "extra" => [protocol],
         "extension" => "upf",
         "sssp_handle" => "$(functional)_$(protocol)_$(replace(version, "." => "-"))",

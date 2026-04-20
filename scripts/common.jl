@@ -3,6 +3,8 @@ using TOML
 
 KNOWN_FUNCTIONALS = ["pbe", "lda", "pbesol"]
 KNOWN_EXTENSIONS  = ["xml", "upf", "gth", "psp8"]
+KNOWN_TYPES = ["nc", "paw", "us", "mixed"]
+KNOWN_RELATIVISTIC_TREATMENTS = ["nr", "sr", "fr"]
 
 function pseudo_folders(path)
     [root for (root, dirs, files) in walkdir(path) if "meta.toml" in files]
@@ -32,16 +34,10 @@ function check_valid_meta(meta::AbstractDict, folder="")
         end
     end
 
-    if typeof(meta["type"]) <: AbstractVector
-        if !all(t -> t in ("nc", "paw", "us"), meta["type"])
-            error("Invalid type: $(meta["type"]) (in $folder)")
-        end
-    else
-        if !(meta["type"] in ("nc", "paw", "us"))
-            error("Invalid type: $(meta["type"]) (in $folder)")
-        end
+    if !(meta["type"] in KNOWN_TYPES)
+        error("Invalid type: $(meta["type"]) (in $folder)")
     end
-    if !(meta["relativistic"] in ("sr", "fr"))
+    if !(meta["relativistic"] in KNOWN_RELATIVISTIC_TREATMENTS)
         error("Invalid relativistic: $(meta["relativistic"]) (in $folder)")
     end
     if !(meta["functional"] in KNOWN_FUNCTIONALS)
@@ -59,8 +55,7 @@ function check_valid_meta(meta::AbstractDict, folder="")
 end
 
 function artifact_name(meta::AbstractDict)
-    type = typeof(meta["type"]) <: AbstractString ? meta["type"] : join(meta["type"], "-")
-    join((meta["collection"], type, meta["relativistic"],
+    join((meta["collection"], meta["type"], meta["relativistic"],
           meta["functional"], "v" * replace(meta["version"], "." => "_"),
           join(meta["extra"], "."), meta["extension"]), ".")
 end

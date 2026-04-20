@@ -1,0 +1,5 @@
+sssp_pseudopotential = "MalteSachs"
+Ecut = 30.0
+supersampling = 2.8284271247461903
+sssp_filename = "Lr.paw.z_25.ld1.uni-marburg.v0.upf"
+sssp_md5 = "29a152f2015609634c2e852a82c5a4f5"

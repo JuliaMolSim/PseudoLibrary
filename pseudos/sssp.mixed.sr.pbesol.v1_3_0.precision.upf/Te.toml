@@ -1,0 +1,5 @@
+sssp_pseudopotential = "US100-low"
+Ecut = 25.0
+supersampling = 2.8284271247461903
+sssp_filename = "Te.us.z_6.ld1.psl.v1.0.0-low.upf"
+sssp_md5 = "20214d2a30ba123d71b86b9b16613fe4"

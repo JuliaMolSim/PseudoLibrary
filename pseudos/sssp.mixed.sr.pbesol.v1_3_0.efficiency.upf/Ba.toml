@@ -1,0 +1,5 @@
+sssp_pseudopotential = "100PAW"
+Ecut = 15.0
+supersampling = 2.8284271247461903
+sssp_filename = "Ba.pbesol-spn-kjpaw_psl.1.0.0.UPF"
+sssp_md5 = "f28c4a63d325c1a0d00fd3a4f19b8d73"
