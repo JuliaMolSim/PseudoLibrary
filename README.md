@@ -133,7 +133,7 @@ julia --project=scripts scripts/add_cp2k.jl pseudos
 In running the script we categorised the pseudopotential files
 into *smallcore*, *semicore* and *largecore*. The mapping from the original filenames
 [used upstream](https://github.com/cp2k/cp2k-data/tree/master/potentials/Goedecker/cp2k)
-is available in 
+is available in
 [pseudos/cp2k.nc.sr.lda.v0_1.md](pseudos/cp2k.nc.sr.lda.v0_1.md)
 and
 [pseudos/cp2k.nc.sr.pbe.v0_1.md](pseudos/cp2k.nc.sr.pbe.v0_1.md).
@@ -141,6 +141,33 @@ and
 **Collection-specific metadata.** Contains the following element-specific metadata:
 * `n_valence_electrons`: Number of valence electrons
 * `cp2k_filename`: The original file name used in the CP2K pseudopotential data repository.
+
+### [SPMS potentials](https://github.com/SPARC-X/SPMS-psps) (prefixed spms)
+
+Norm-conserving potentials for PBE obtained by an evolutionary Pareto optimization.
+
+```
+M. F. Shojaei, J. E. Pask, A. J. Medford, P, Suryanarayana,
+Soft and transferable pseudopotentials from multi-objective optimization,
+Computer Physics Communications,
+Volume 283,
+2023,
+https://doi.org/10.1016/j.cpc.2022.108594
+```
+
+**Script.** The SPMS pseudopotentials have been added by running the script
+```sh
+julia --project=scripts scripts/add_spms.jl pseudos
+```
+The script clones the latest commit of the `SPMS-psps` repository for v1.0 as of April 2026 and retrieves the recommeded `Ecut`s from the copyright/info block written at the top of UPF and bottom of PSP8 files.
+
+**Collection-specific metadata.**
+Contains the following element-specific metadata:
+* `cutoffs_low`, `cutoffs_high`: 10^{-3} and 10^{-4} Ha/atom (ONCVPSP) recommended cutoffs by SPMS. The default (i.e. `Ecut` value) corresponds to `high`.
+* `rcut`: Recommended radial cutoff when integrating numeric pseudopotentials (in Bohrs).
+   Equal to `5.99` for each element (the PseudoDojo/PSP8 value, with respect
+   to which SPMS was developed).
+
 
 ## Structure of the Artifact.toml
 Next to the usual entries to make the `Artifact.toml` useful to download
