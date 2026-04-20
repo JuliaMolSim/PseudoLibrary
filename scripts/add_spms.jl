@@ -6,10 +6,12 @@ using Dates
 include("common.jl")
 
 const num_regex = r"([+\-]?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+\-]?\d+)?)"
+const commit_versions = Dict(
+    "1.0" => "4bdd7ba28d5d1a61262e639307108ca081e8d6f8"
+)
 
 function download_spms(meta, pseudopath)
     repo_url = "https://github.com/SPARC-X/SPMS-psps.git"
-    commit_hash = "4bdd7ba28d5d1a61262e639307108ca081e8d6f8"
 
     extension = meta["extension"]
     pseudofolder = extension
@@ -18,7 +20,7 @@ function download_spms(meta, pseudopath)
     mktempdir() do d
         @info "Downloading files for SPMS $extension"
         repo = LibGit2.clone(repo_url, d)
-        LibGit2.checkout!(repo, commit_hash)
+        LibGit2.checkout!(repo, commit_versions[meta["version"]])
 
         full_pseudofolder = joinpath(d, pseudofolder)
         outputfolder = joinpath(pseudopath, artifact_name(meta))
@@ -99,8 +101,8 @@ end
 
 function main(pseudopath)
     mkpath(pseudopath)
+    # This also supports "psp8" as a file format if ever required in the future
     download_spms(make_spms_meta("upf"), pseudopath)
-    download_spms(make_spms_meta("psp8"), pseudopath)
 end
 
 (abspath(PROGRAM_FILE) == @__FILE__) && main(ARGS[1])
