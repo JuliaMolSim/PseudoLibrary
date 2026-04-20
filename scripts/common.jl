@@ -3,8 +3,9 @@ using TOML
 
 KNOWN_FUNCTIONALS = ["pbe", "lda", "pbesol"]
 KNOWN_EXTENSIONS  = ["xml", "upf", "gth", "psp8"]
-KNOWN_TYPES = ["nc", "paw", "us", "mixed"]
-KNOWN_RELATIVISTIC_TREATMENTS = ["nr", "sr", "fr"]
+KNOWN_TYPES = ["nc", "paw", "us", "mixed"]          # mixed means possible mixture of families
+KNOWN_RELATIVISTIC_TREATMENTS = ["nr", "sr", "fr"]  # i.e non relativistic,
+                                                    # scalar relativistic, fully relativistic
 
 function pseudo_folders(path)
     [root for (root, dirs, files) in walkdir(path) if "meta.toml" in files]
