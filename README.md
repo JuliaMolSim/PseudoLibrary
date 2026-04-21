@@ -215,9 +215,9 @@ family in form of a dictionary with the following keys:
 - Add a file `meta.toml` into the folder. This file should represent a dictionary
   with the following keys:
   * `collection`: The larger pseudopotential collection (e.g. `dojo` for pseudodojo)
-  * `relativistic`: The model of relativistic effects used (e.g. `sr` or `fr`)
+  * `relativistic`: The model of relativistic effects used (e.g. `nr, `sr` or `fr`)
   * `version`: The version of this collection of pseudopotentials (e.g. `version`)
-  * `type`: Pseudopotential type, such as `nc`, `paw`, `us`
+  * `type`: Pseudopotential type, such as `nc`, `paw`, `us` or `mixed`.
   * `functional` such as `lda`, `pbe`, `pbesol`
   * `extension`: The file extension of all files
   * `program`: Code used to generate the pseudopotentials
