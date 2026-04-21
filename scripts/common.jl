@@ -3,6 +3,9 @@ using TOML
 
 KNOWN_FUNCTIONALS = ["pbe", "lda", "pbesol"]
 KNOWN_EXTENSIONS  = ["xml", "upf", "gth", "psp8"]
+KNOWN_TYPES = ["nc", "paw", "us", "mixed"]          # mixed means possible mixture of families
+KNOWN_RELATIVISTIC_TREATMENTS = ["nr", "sr", "fr"]  # i.e non relativistic,
+                                                    # scalar relativistic, fully relativistic
 
 function pseudo_folders(path)
     [root for (root, dirs, files) in walkdir(path) if "meta.toml" in files]
@@ -32,10 +35,10 @@ function check_valid_meta(meta::AbstractDict, folder="")
         end
     end
 
-    if !(meta["type"] in ("nc", "paw", "us"))
+    if !(meta["type"] in KNOWN_TYPES)
         error("Invalid type: $(meta["type"]) (in $folder)")
     end
-    if !(meta["relativistic"] in ("sr", "fr"))
+    if !(meta["relativistic"] in KNOWN_RELATIVISTIC_TREATMENTS)
         error("Invalid relativistic: $(meta["relativistic"]) (in $folder)")
     end
     if !(meta["functional"] in KNOWN_FUNCTIONALS)

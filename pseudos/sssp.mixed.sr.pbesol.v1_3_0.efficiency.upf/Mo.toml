@@ -1,0 +1,5 @@
+sssp_pseudopotential = "SG15"
+Ecut = 17.5
+supersampling = 2.0
+sssp_filename = "Mo_ONCV_PBEsol-1.0.upf"
+sssp_md5 = "5193ba6a20874d27c2ef80314d1b3445"

@@ -1,0 +1,5 @@
+sssp_pseudopotential = "100PAW"
+Ecut = 45.0
+supersampling = 2.8284271247461903
+sssp_filename = "Ra.paw.z_20.ld1.psl.v1.0.0-high.upf"
+sssp_md5 = "d3f31cdfcb736122946f367071bad67a"

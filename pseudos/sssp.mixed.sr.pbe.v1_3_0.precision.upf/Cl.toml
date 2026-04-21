@@ -1,0 +1,5 @@
+sssp_pseudopotential = "100US"
+Ecut = 50.0
+supersampling = 2.8284271247461903
+sssp_filename = "Cl.pbe-n-rrkjus_psl.1.0.0.UPF"
+sssp_md5 = "18cc83b4be324290a879bee3176034ba"

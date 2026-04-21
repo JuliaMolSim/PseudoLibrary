@@ -1,0 +1,5 @@
+sssp_pseudopotential = "100US"
+Ecut = 45.0
+supersampling = 2.8284271247461903
+sssp_filename = "Ir.us.z_31.ld1.psl.v1.0.0-high.upf"
+sssp_md5 = "23e44c6b1a33b4dc9f7824fe245a48ae"

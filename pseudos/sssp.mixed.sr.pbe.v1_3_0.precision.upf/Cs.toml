@@ -1,0 +1,5 @@
+sssp_pseudopotential = "Dojo"
+Ecut = 22.5
+supersampling = 2.0
+sssp_filename = "Cs.nc.z_9.oncvpsp3.dojo.v4-str.upf"
+sssp_md5 = "d01c53d012be9123745781bcb8b00a26"

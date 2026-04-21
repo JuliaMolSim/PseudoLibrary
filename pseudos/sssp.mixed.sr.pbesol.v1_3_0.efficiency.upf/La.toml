@@ -1,0 +1,5 @@
+sssp_pseudopotential = "Wentzcovitch"
+Ecut = 20.0
+supersampling = 2.8284271247461903
+sssp_filename = "La.paw.z_11.atompaw.wentzcovitch.v1.2.upf"
+sssp_md5 = "bf5f3bee57a2a6e198b760bfd6266ed7"

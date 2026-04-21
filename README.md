@@ -142,6 +142,29 @@ and
 * `n_valence_electrons`: Number of valence electrons
 * `cp2k_filename`: The original file name used in the CP2K pseudopotential data repository.
 
+### [SSSP pseudopotentials](https://materialscloud.org/discover/sssp) (prefixed sssp)
+
+A mix of norm-conserving, ultrasoft, and PAW pseudopotentials.
+
+```
+G. Prandini, A. Marrazzo, I. E. Castelli, N. Mounet, N. Marzari,
+Precision and efficiency in solid-state pseudopotential calculations,
+npj Computational Materials,
+Volume 4,
+2018,
+https://doi.org/10.1038/s41524-018-0127-2
+```
+
+**Script.** The SSSP pseudopotentials have been added by running the script
+```sh
+julia --project=scripts scripts/add_sssp.jl pseudos
+```
+
+**Collection-specific metadata.** Contains the following element-specific metadata:
+* `sssp_md5`: The md5 hash of the pseudopotential file.
+* `sssp_pseudopotential`: Original collection from which the pseudopotential was taken.
+* `sssp_filename`: Original filename in the source family and consequently the SSSP.
+
 ### [SPMS potentials](https://github.com/SPARC-X/SPMS-psps) (prefixed spms)
 
 Norm-conserving potentials for PBE obtained by an evolutionary Pareto optimization.
