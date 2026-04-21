@@ -165,6 +165,32 @@ julia --project=scripts scripts/add_sssp.jl pseudos
 * `sssp_pseudopotential`: Original collection from which the pseudopotential was taken.
 * `sssp_filename`: Original filename in the source family and consequently the SSSP.
 
+### [SPMS potentials](https://github.com/SPARC-X/SPMS-psps) (prefixed spms)
+
+Norm-conserving potentials for PBE obtained by an evolutionary Pareto optimization.
+
+```
+M. F. Shojaei, J. E. Pask, A. J. Medford, P, Suryanarayana,
+Soft and transferable pseudopotentials from multi-objective optimization,
+Computer Physics Communications,
+Volume 283,
+2023,
+https://doi.org/10.1016/j.cpc.2022.108594
+```
+
+**Script.** The SPMS pseudopotentials have been added by running the script
+```sh
+julia --project=scripts scripts/add_spms.jl pseudos
+```
+The script clones the latest commit of the `SPMS-psps` repository for v1.0 as of April 2026 and retrieves the recommeded `Ecut`s from the copyright/info block written at the top of UPF and bottom of PSP8 files.
+
+**Collection-specific metadata.**
+Contains the following element-specific metadata:
+* `cutoffs_low`, `cutoffs_high`: 10^{-3} and 10^{-4} Ha/atom (ONCVPSP) recommended cutoffs by SPMS. The default (i.e. `Ecut` value) corresponds to `high`.
+* `rcut`: Recommended radial cutoff when integrating numeric pseudopotentials (in Bohrs).
+   Equal to `5.99` for each element (the PseudoDojo/PSP8 value, with respect
+   to which SPMS was developed).
+
 
 ## Structure of the Artifact.toml
 Next to the usual entries to make the `Artifact.toml` useful to download
